@@ -15,6 +15,7 @@ module.exports = addKeyword(EVENTS.WELCOME).addAction(async (ctx, ctxFn) => {
     return ctxFn.flowDynamic('Ups lo siento no te entiendo ¿Como puedo ayudarte?')
   }
   state.update({answer:empleadoIdeal.answer})
-  pluginAi.gotoFlow(empleadoIdeal.employee, ctxFn)
+  return ctxFn.flowDynamic(empleadoIdeal.answer)
+  // pluginAi.gotoFlow(empleadoIdeal.employee, ctxFn)
 
 })
