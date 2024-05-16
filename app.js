@@ -6,7 +6,7 @@ const {
 } = require("@bot-whatsapp/bot");
 
 const BaileysProvider = require("@bot-whatsapp/provider/baileys");
-const MockAdapter = require("@bot-whatsapp/database/mock");
+const MongoAdapter = require("@bot-whatsapp/database/mongo");
 
 const welcomeFlow = require("./flows/welcome.flow");
 const introFlow = require('./flows/intro.flow')
@@ -52,7 +52,26 @@ employeesAddon.employees([
 
 
 const main = async () => {
-  const adapterDB = new MockAdapter();
+  const uri = process.env.MONGO_DB_URL;
+  const adapterDB = new MongoAdapter({
+    dbUri: uri,
+    dbName: "StateContextMambo"
+  });
+  // const uri = process.env.DB_HOST;
+  // const dbName = process.env.DB_NAME;
+  // const dbUser = process.env.DB_USER;
+  // const dbPassword =  process.env.DB_PASSWORD;
+  // const dbPort = process.env.DB_PORT;
+
+  // const adapterDB = new MysqlAdapter({
+  //   dbUri: uri,
+  //   dbName: dbName,
+  //   dbUser: dbUser,
+  //   dbPassword:  dbPassword,
+  //   dbPort: dbPort,
+  //   dbTable: "bot_whatsapp",
+  //   dbTableMessages: "bot_whatsapp_messages",
+  // });
   const adapterFlow = createFlow([
     welcomeFlow,
     introFlow,
