@@ -11,7 +11,7 @@ const MockAdapter = require("@bot-whatsapp/database/mock");
 const welcomeFlow = require("./flows/welcome.flow");
 const vendedorFlow = require('./flows/vendedor.flow')
 const expertoFlow = require('./flows/experto.flow')
-// const pagarFlow = require('./flows/pagar.flow')
+const directorFlow = require('./flows/director.flow')
 
 const {init} = require('bot-ws-plugin-openai');
 const ServerAPI = require('./http');
@@ -27,24 +27,23 @@ const employeesAddon = init(employeesAddonConfig);
 
 employeesAddon.employees([
   {
-    name: "EMPLEADO_VENDEDOR",
+    name: "Gonzalo",
     description:
-    "Hola, soy Gonzalo, tu asesor de confianza en Metamorfosis 360. Estoy aquí para ayudarte si estás interesado en nuestros servicios de Google Ads o soluciones técnicas para desarrollo de sitios web, aplicaciones de escritorio o móviles, utilizando tecnologías como Node.js, React.js y JavaScript. O incluso si tienes preguntas sobre cómo podemos ayudar a crecer tu negocio. Mi enfoque es proporcionarte respuestas claras y rápidas para asegurar una excelente experiencia de servicio.",
-  flow: vendedorFlow,
+      "Hola, soy Gonzalo, especialista en estrategias de marketing digital en Metamorfosis 360. Estoy aquí para ayudarte a destacar tu agencia de viajes en un mercado competitivo, utilizando herramientas avanzadas de SEO, Google Display, y pauta digital en redes como Facebook y TikTok. Mi enfoque está en crear conexiones significativas que transformen la visibilidad de tu negocio en resultados tangibles.",
+    flow: vendedorFlow,
   },
   {
-    name: "EMPLEADO_EXPERTO",
+    name: "Fernanda",
     description:
-    "Saludos, soy Fernanda, la experta en marketing digital de Metamorfosis 360. Me especializo en optimizar y automatizar las estrategias de marketing, facebook, tiktok y otras redes sociales para negocios como el tuyo. Estoy aquí para resolver cualquier duda que tengas sobre nuestros cursos y servicios, diseñados específicamente para potenciar las ventas y el crecimiento de tu empresa. Te ofreceré respuestas precisas para maximizar tu comprensión y aplicabilidad de nuestras soluciones.",
-  flow: expertoFlow,
+      "Saludos, soy Fernanda, tu experta en CRM y automatizaciones en Metamorfosis 360. Mi objetivo es facilitar la automatización de tus procesos de atención al cliente, incluyendo la implementación de chatbots AI y Whatsapp Marketing. Con estos recursos, tu agencia de viajes operará de manera más eficiente, permitiéndote concentrarte en lo que realmente importa: crecer y prosperar.",
+    flow: expertoFlow,
+  },
+  {
+    name: "Diego",
+    description:
+      "Hola, me llamo Diego y soy el director de proyectos en Metamorfosis 360. Comprendo los desafíos únicos que enfrentan las agencias de viajes como la tuya. Estoy aquí para asegurar que cada campaña de marketing digital no solo alcance, sino supere tus expectativas. Con una estrategia personalizada y un enfoque flexible, trabajaremos juntos para asegurar que cada inversión en marketing contribuya al éxito de tu negocio.",
+    flow: directorFlow,
   }
-  // ,
-  // {
-  //   name: "CEO",
-  //   description:
-  //     "Saludos, mi nombre es Diego. Soy el CEO de Metamorfosis 360 y me encargo de asistir en casos que requieran un conocimiento intrinseco sobre nuestros sistemas, procesos y en los cuales se requiere un manejo extremo de know-how de negocios.",
-  //   flow: pagarFlow,
-  // }
 ])
 
 /**
@@ -57,7 +56,7 @@ const main = async () => {
   const adapterFlow = createFlow([
     welcomeFlow,
     vendedorFlow,
-    // pagarFlow,
+    directorFlow,
     expertoFlow    
   ]);
   
